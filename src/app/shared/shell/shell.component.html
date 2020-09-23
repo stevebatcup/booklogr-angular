@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer>Search</mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle search"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <span class="logo" routerLink="/">📕 Booklogr</span>
+
+      <span class="fill-space"></span>
+
+      <div>
+        <a mat-button routerLink="/">Home</a>
+        <a mat-button routerLink="/books">My books</a>
+      </div>
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
