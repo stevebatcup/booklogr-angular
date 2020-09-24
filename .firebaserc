@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "booklogr": {
+      "hosting": {
+        "booklogrweb": [
+          "booklogr"
+        ]
+      }
+    }
+  }
+}
