@@ -1,0 +1,24 @@
+<div class="results-wrapper">
+  <mat-grid-list cols="2" gutterSize="20" rowHeight="1:2">
+    <mat-grid-tile *ngFor="let result of searchResults$ | async" rowHeight="1">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{ result.title }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ result.author }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{ result.imageSrc }}" />
+        <mat-card-content>
+          <p>
+            {{ result.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

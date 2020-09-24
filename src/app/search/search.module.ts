@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { MobileFormComponent } from './mobile-form/mobile-form.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 import { RouterModule } from '@angular/router';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
-  declarations: [MobileFormComponent],
+  declarations: [SearchFormComponent, SearchResultsComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: '', component: MobileFormComponent },
-      // { path: '/results', component: SearchResultsComponent },
+      { path: '', component: SearchFormComponent },
+      { path: 'results', component: SearchResultsComponent },
     ]),
   ],
 })

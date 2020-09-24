@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'bklr-mobile-form',
   template: `<bklr-search-form></bklr-search-form>`,
-  styleUrls: ['./mobile-form.component.scss'],
+  styleUrls: ['./search-form.component.scss'],
 })
-export class MobileFormComponent implements OnInit {
+export class SearchFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

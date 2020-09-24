@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bklr-search-form',
@@ -28,8 +29,6 @@ import {
         >
           Search
         </button>
-
-        <p *ngIf="searchQuery">You searched for: {{ searchQuery }}</p>
       </form>
     </div>
   `,
@@ -52,9 +51,8 @@ import {
 export class SearchFormComponent implements OnInit {
   @Output() menuLinkClicked = new EventEmitter<boolean>();
   searchForm: FormGroup;
-  searchQuery: string;
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.searchForm = fb.group({
       content: ['', [Validators.minLength(3), Validators.required]],
     });
@@ -67,6 +65,9 @@ export class SearchFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.searchQuery = this.searchForm.get('content').value;
+    const searchQuery = this.searchForm.get('content').value;
+    this.router.navigate(['/search/results'], {
+      queryParams: { query: searchQuery },
+    });
   }
 }
