@@ -1,5 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer>Search</mat-sidenav>
+  <mat-sidenav #drawer>
+    <div *ngIf="!(showDesktopOnlyElements$ | async)">
+      <bklr-mobile-menu (menuLinkClicked)="drawer.toggle()"></bklr-mobile-menu>
+    </div>
+
+    <div *ngIf="showDesktopOnlyElements$ | async">
+      <bklr-search-form (menuLinkClicked)="drawer.toggle()"></bklr-search-form>
+    </div>
+  </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
@@ -8,14 +17,15 @@
         mat-icon-button
         (click)="drawer.toggle()"
       >
-        <mat-icon>search</mat-icon>
+        <mat-icon *ngIf="!(showDesktopOnlyElements$ | async)">menu</mat-icon>
+        <mat-icon *ngIf="showDesktopOnlyElements$ | async">search</mat-icon>
       </button>
 
       <span class="logo" routerLink="/">📕 Booklogr</span>
 
       <span class="fill-space"></span>
 
-      <div>
+      <div *ngIf="showDesktopOnlyElements$ | async">
         <a mat-button routerLink="/">Home</a>
         <a mat-button routerLink="/books">My books</a>
       </div>

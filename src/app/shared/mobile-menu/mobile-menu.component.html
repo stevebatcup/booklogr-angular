@@ -1,0 +1,25 @@
+<div class="menu-inner">
+  <mat-nav-list role="list">
+    <a mat-list-item role="listitem" routerLink="/" (click)="onLinkClick()">
+      <mat-icon matListIcon>home</mat-icon> Home
+    </a>
+
+    <a
+      mat-list-item
+      role="listitem"
+      routerLink="/search"
+      (click)="onLinkClick()"
+    >
+      <mat-icon matListIcon>search</mat-icon> Search
+    </a>
+
+    <a
+      mat-list-item
+      role="listitem"
+      routerLink="/books"
+      (click)="onLinkClick()"
+    >
+      <mat-icon matListIcon>book</mat-icon> My Books
+    </a>
+  </mat-nav-list>
+</div>
