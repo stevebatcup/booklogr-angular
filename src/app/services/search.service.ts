@@ -9,6 +9,7 @@ export interface SearchResult {
   author: string;
   description: string;
   imageSrc: string;
+  totalItems: number;
 }
 
 @Injectable({
@@ -17,26 +18,27 @@ export interface SearchResult {
 export class SearchService {
   constructor(private fireFunctions: AngularFireFunctions) {}
 
-  runSearch(query: string): Observable<SearchResult[]> {
+  runSearch(query: string, pageNumber: number=1, perPage: number=24): Observable<SearchResult[]> {
     const callable$ = this.fireFunctions.httpsCallable<any>('runSearch');
     return callable$({
       query: query,
-      maxResults: 24,
-      startIndex: 1,
+      maxResults: perPage,
+      startIndex: (pageNumber) * perPage,
     }).pipe(map((results) => this.itemsToSearchResults(results)));
   }
 
-  itemsToSearchResults({ items }: any): SearchResult[] {
-    return items.map((item) => {
+  itemsToSearchResults(results: any): SearchResult[] {
+    return results.items.map((item) => {
       return {
         title: item.volumeInfo.title,
-        author: item.volumeInfo.authors ? item.volumeInfo.authors[0] : '',
+        author: item.volumeInfo.authors ? item.volumeInfo.authors[0] : 'unknown',
         description: item.volumeInfo.description
           ? item.volumeInfo.description
           : '',
         imageSrc: item.volumeInfo.imageLinks
           ? item.volumeInfo.imageLinks.thumbnail
-          : '',
+          : 'https://image.freepik.com/free-vector/stack-books-pile-books-vector-illustration-icon-stack-books-flat-style_87946-647.jpg',
+        totalItems: results.totalItems,
       };
     });
   }

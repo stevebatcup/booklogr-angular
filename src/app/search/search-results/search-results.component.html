@@ -1,24 +1,36 @@
-<div class="results-wrapper">
-  <mat-grid-list cols="2" gutterSize="20" rowHeight="1:2">
-    <mat-grid-tile *ngFor="let result of searchResults$ | async" rowHeight="1">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>{{ result.title }}</mat-card-title>
-          <mat-card-subtitle>
-            {{ result.author }}
-          </mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="{{ result.imageSrc }}" />
+<mat-progress-spinner *ngIf="loading$ | async" mode="indeterminate" color="primary"></mat-progress-spinner>
+
+<div class="results-wrapper" #resultsBox 
+      fxLayout="row wrap" 
+      fxLayoutGap="16px grid" 
+      *ngIf="!(loading$ | async)">
+      
+  <div fxFlex="33%" 
+      fxFlex.xs="50%" 
+      fxFlex.sm="33%"
+      fxFlex.md="25%"
+      fxFlex.lg="16.66%"
+      fxFlex.xl="12.5%" 
+      *ngFor="let result of results">
+
+      <mat-card class="search-result mat-elevation-z4">
+        <div class="img-mask">
+          <img mat-card-image src="{{ result.imageSrc }}" class="size-{{cols$ | async}}" />
+        </div>
+
         <mat-card-content>
-          <p>
-            {{ result.description }}
-          </p>
+          <mat-card-title>{{ (result.title.length>44)? (result.title | slice:0:44)+'..':(result.title) }}</mat-card-title>
+          <mat-card-subtitle *ngIf="result.author">
+            by {{ (result.author.length>44)? (result.author | slice:0:44)+'..':(result.author) }}
+          </mat-card-subtitle>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  </div>
 </div>
+
+<mat-paginator [length]="totalItems"
+  [pageSize]="perPage"
+  [pageSizeOptions]="[12, 24, 48, 96]"
+  [hidden]="loading$ | async">
+</mat-paginator>
+

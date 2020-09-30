@@ -1,5 +1,55 @@
 :host {
+  .mat-paginator[hidden] {
+    display: none;
+  }
+
+  .mat-progress-spinner {
+    margin: 100px auto;
+  }
+
   .results-wrapper {
     padding: 20px;
+
+    .mat-card-title {
+      margin-top: 0px;
+      line-height: 1.15em;
+      font-size: 1.3em;
+    }
+
+    .mat-card-content {
+      text-align: center;
+      height: 7em;
+    }
+
+    .search-result {
+      margin-bottom: 16px;
+
+      .img-mask {
+        overflow: hidden; 
+        height: 230px;
+      }
+
+      img {
+        height: 100%;
+        object-fit: scale-down;
+        border-radius: 4px;
+
+        // &.size-2 {
+        //   max-height: 320px;
+        // }
+        // &.size-3 {
+        //   max-height: 370px;
+        // }
+        // &.size-4 {
+        // max-height: 380px;
+        // }
+        // &.size-8 {
+        //  max-height: 400px;
+        // }
+        // &.size-10 {
+        //   max-height: 275px;
+        // }
+      }
+    }
   }
 }

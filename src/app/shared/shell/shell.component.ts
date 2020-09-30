@@ -14,7 +14,6 @@ export class ShellComponent implements OnInit {
   constructor(private mediaObserver: MediaObserver) {
     this.showDesktopOnlyElements$ = this.mediaObserver.media$.pipe(
       map((mediaChange) => {
-        console.log(mediaChange.mqAlias);
         return ['sm', 'md', 'lg', 'xl'].includes(mediaChange.mqAlias);
       })
     );

@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -35,6 +37,8 @@ const modules = [
   MatCardModule,
   MatGridListModule,
   LayoutModule,
+  MatProgressSpinnerModule,
+  MatPaginatorModule,
   FlexLayoutModule,
 ];
 
